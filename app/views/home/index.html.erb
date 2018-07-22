@@ -1,2 +1,24 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="container center">
+    <div class="vertical-middle" data-loader="button">
+        <div class="heading-block nobottomborder bottommargin-sm">
+            <h1>Descarga videos y musica de youtube</h1>
+            <span style="font-size:20px;" class="notopmargin">Ahora puedes descargar videos de youtube a tu dispositivo movil, Solo ingresare el link del video y listo.</span>
+        </div>
+        <div class="widget-subscribe-form-result"></div>
+
+    
+        <%= form_tag("/download", method: "post", class: " divcenter", style: "max-width: 500px;") do %>
+            <%= text_field_tag(:url, nil , class: "form-control form-control-lg not-dark bottommargin-sm required", placeholder: "Ingrese la url del video") %>
+            <%= select_tag "format_d", "<option>mp4</option><option>mp3</option>".html_safe, class: 'form-control' %>
+            <%= submit_tag("Descargar", class: "button button-border button-light button-circle") %>
+        <% end %>
+
+        <% if params['url'] %>
+            <h3 class="card-title t400 mb-0">Listo!</h3>                        
+            <%= params['format'] %>
+            <%= params['url'] %>
+            <%= link_to 'Descargar!', downloadd_path(@file.options.output.split('public/download')), class: "button button-rounded button-large ls0 t400 ml-0 mb-2 nott" %>
+        <% end %>
+
+    </div>
+</div>
